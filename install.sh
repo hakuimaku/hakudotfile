@@ -12,11 +12,11 @@ for pkg in "${DEPENDENCIES[@]}"; do
     else
         echo "❌ [ERROR] $pkg DOES NOT EXIST!"
         
-        read -p "Did you want to install $pkg now? (y/n): " confirm
+        read -p "Do you want to install $pkg now? (y/n): " confirm
         if [[ $confirm == [yY] ]]; then
             sudo pacman -S --noconfirm "$pkg"
         else
-            echo "Please install $pkg before running this script. Exiting!"
+            echo "You need to install $pkg."
             exit 1
         fi
     fi
@@ -34,10 +34,8 @@ if [[ ! -f "$PKG_FILE" ]]; then
 fi
 
 echo "📦 Ready to install packages..."
-read -p "Did you have installed them before? (y/n): " confirm
-if [[ $confirm != [yY] ]]; then
-    echo "Skipping package installation."
-else
+read -p "Do you want to install packages from pkg.txt now? (y/n): " confirm
+if [[ $confirm == [yY] ]]; then
     yay -S --needed --noconfirm - < "$PKG_FILE"
     if [ $? -eq 0 ]; then
         echo "✅ Installation completed successfully!"
@@ -45,6 +43,8 @@ else
         echo "⚠️ An error occurred during installation."
         exit 1
     fi
+else
+    echo "Skipping package installation."
 fi
 
 
@@ -57,7 +57,6 @@ echo "--- 3. Ready to initialize system directories ---"
 FOLDERS=(
     "$HOME/Documents"
     "$HOME/.local/bin"
-    "$HOME/.local/share"
     "$HOME/.config"
 )
 
@@ -79,10 +78,8 @@ DEST_CONFIG="$HOME/.config"
 echo "--- Ready to deploy config to ~/.config ---"
 
 # Copy config files from source to destination
-read -p "Did you have backup your current config before? (y/n): " confirm
-if [[ $confirm != [yY] ]]; then
-    echo "Skipping config backup."
-else
+read -p "Do you want to backup and copy your current config now? (y/n): " confirm
+if [[ $confirm == [yY] ]]; then
     if [ -d "$SOURCE_CONFIG" ]; then
         
         # Make backup if destination config already exists
@@ -101,6 +98,8 @@ else
         echo "❌ [ERROR] Not found directory $SOURCE_CONFIG"
         exit 1
     fi
+else
+    echo "Skipping config backup."
 fi
 
 
@@ -110,10 +109,8 @@ DEST_BIN="$HOME/.local/bin"
 
 echo "--- 4. Ready to deploy bin files to ~/.local/bin ---"
 
-read -p "Did you have backup your current local bin before? (y/n): " confirm
-if [[ $confirm != [yY] ]]; then
-    echo "Skipping local bin backup."
-else
+read -p "Do you want to backup and copy your current local bin now? (y/n): " confirm
+if [[ $confirm == [yY] ]]; then
     # Copy bin files from source to destination
     if [ -d "$SOURCE_BIN" ]; then
         cp -rf "$SOURCE_BIN"/. "$DEST_BIN/"
@@ -123,6 +120,8 @@ else
         echo "❌ [ERROR] Not found directory $SOURCE_BIN"
         exit 1
     fi
+else
+    echo "Skipping local bin backup."
 fi
 
 
@@ -167,10 +166,8 @@ SOURCE_ROOT="$HOME/hakudotfile"
 
 echo "--- 6. Ready to deploy other files to home directory ---"
 
-read -p "Did you have backup your current other files before? (y/n): " confirm
+read -p "Do you want to backup and copy your other files now? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
-    echo "Skipping other files backup."
-else
     FILES_TO_COPY=(".nanorc" ".zshrc")
 
     for file in "${FILES_TO_COPY[@]}"; do
@@ -190,5 +187,7 @@ else
     done
     cp -f "$SOURCE_ROOT/fastfetch.jpg" "$HOME/Documents/"
     echo "✅ Did copy fastfetch.jpg to $HOME/Documents/"
+else
+    echo "Skipping other files backup."
 fi
 
