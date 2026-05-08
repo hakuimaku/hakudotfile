@@ -1,0 +1,27 @@
+#!/bin/bash
+
+# List options
+options="󱠩 Hibernate
+ Reboot
+ Power Off
+󰒲 Sleep
+󱅞 Lock
+󰩈 Exit
+󰌑 Return"
+
+# Design rofi
+chosen=$(echo -e "$options" | rofi -dmenu -p "HakuOS" -i -theme-str 'window
+{
+    width: 600px;
+}')
+
+# List action
+case $chosen in
+    *"Hibernate"*) /home/hakuimaku/.local/bin/smart-hibernate ;;
+    *"Reboot"*) systemctl reboot ;;
+    *"Power Off"*) systemctl poweroff ;;
+    *"Sleep"*) systemctl suspend ;;
+    *"Lock"*) hyprlock ;;
+    *"Exit"*) hyprctl dispatch exit ;;
+    *"Return"*) ~/.local/bin/quick_settings.sh ;;
+esac

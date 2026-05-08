@@ -1,0 +1,58 @@
+#!/bin/bash
+
+DIV="────────────────────────────────────"
+
+# List options
+options="󰍜 App Menu
+󰨞 Visual Studio Code
+ Rider
+ Datagrip
+󰇧 Browser
+ File Manager
+ Note
+󰈆 Quit
+$DIV
+󰸉 Kill Video Wallpaper
+ Cava Underbar
+󰑋 Screen Record
+󰖩 Wifi
+󰂯 Bluetooth
+ Local Send
+󰓃 Audio Control
+ Disk Manager
+󰋊 Storage Manager
+󱤆 Power Save Supermode
+󰉻 Hyprland Folder
+ Setting"
+
+# Design rofi
+chosen=$(echo -e "$options" | rofi -dmenu -p "HakuOS" -i -theme-str 'window 
+{
+    width: 600px;
+    background-color: rgba(0, 0, 0, 0.7);
+}')
+
+# List action
+case $chosen in
+    *"App Menu"*) rofi -show drun ;;
+    *"Visual Studio Code"*) code & ;;
+    *"Rider"*) rider & ;;
+    *"Datagrip"*) datagrip & ;;
+    *"Browser"*) zen-browser & ;;
+    *"File Manager"*) nemo & ;;
+    *"Note"*) code ~/Documents/note.txt & ;;
+    *"Quit"*) /home/hakuimaku/.local/bin/shutdown ;;
+    *"Kill Video Wallpaper"*) pkill mpvpaper ;;
+    *"Cava Underbar"*) /home/hakuimaku/.local/bin/cava_manager --toggle ;;
+    *"Screen Record"*) /home/hakuimaku/.local/bin/record & ;;
+    $DIV) notify-send "This is not a valid option sir" ;;
+    *"Wifi"*) nm-connection-editor & ;;
+    *"Bluetooth"*) blueman-manager & ;;
+    *"Local Send"*) localsend & ;;
+    *"Audio Control"*) pavucontrol & ;;
+    *"Disk Manager"*) gparted & ;;
+    *"Storage Manager"*) kitty --class ncdu -e sudo ncdu / ;;
+    *"Power Save Supermode"*) /home/hakuimaku/.local/bin/power_toggle ;;\
+    *"Hyprland Folder"*) nemo /home/hakuimaku/.config/hypr/ ;;
+    *"Setting"*) code -e nvim /home/hakuimaku/.local/bin/quick_settings ;;
+esac

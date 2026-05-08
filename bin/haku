@@ -1,0 +1,94 @@
+#!/bin/bash
+
+
+RES=$(hyprctl monitors -j | jq -r '.[] | select(.name=="eDP-1") | .width')
+
+
+if [ "$RES" -le 1280 ]; then
+    # Cấu hình cho 720p
+    FONT_CLOCK=7
+    FONT_GENERAL=7
+    FONT_TERMINAL=10
+    RULES_SIZE=(
+        "size 257 285, match:title seyclock"
+        "size 517 360, match:title seypipes"
+        "size 250 285, match:title seymatrix"
+        "size 733 420, match:title seycmd"
+        "size 733 230, match:title seycava"
+    )
+    RULES_MOVE=(
+        "move 10 50, match:title seyclock"
+        "move 10 345, match:title seypipes"
+        "move 277 50, match:title seymatrix"
+        "move 537 50, match:title seycmd"
+        "move 537 480, match:title seycava"
+    )
+else
+    # Cấu hình mặc định cho 1080p 
+    FONT_CLOCK=10
+    FONT_GENERAL=12
+    FONT_TERMINAL=15
+    RULES_SIZE=(
+        "size 385 450, match:title seyclock"
+        "size 775 545, match:title seypipes"
+        "size 375 450, match:title seymatrix"
+        "size 1100 690, match:title seycmd"
+        "size 1100 305, match:title seycava"
+    )
+    RULES_MOVE=(
+        "move 15 55, match:title seyclock"
+        "move 15 520, match:title seypipes"
+        "move 415 55, match:title seymatrix"
+        "move 805 55, match:title seycmd"
+        "move 805 760, match:title seycava"
+    )
+fi
+
+
+for rule in "${RULES_SIZE[@]}"; do hyprctl keyword windowrule "$rule"; done
+for rule in "${RULES_MOVE[@]}"; do hyprctl keyword windowrule "$rule"; done
+
+
+pkill -f cava-underbar
+MY_INFO=$(hyprctl activewindow -j)
+MY_ADDR=$(echo "$MY_INFO" | jq -r '.address')
+
+
+cleanup_ws1() {
+    TARGETS=$(hyprctl clients -j | jq -r '.[] | select(.workspace.id == 1) | .address')
+
+    for win in $TARGETS; do
+        if [[ "$win" != "$MY_ADDR" ]]; then
+            hyprctl dispatch closewindow address:$win
+        fi
+    done
+    sleep 0.05
+}
+
+
+cleanup_ws1
+
+if [[ "$1" == "clear" ]]; then
+    hyprctl dispatch closewindow address:$MY_ADDR
+    exit 0
+fi
+
+hyprctl keyword input:follow_mouse 0
+hyprctl dispatch workspace 1
+sleep 0.05
+
+
+hyprctl dispatch exec "kitty --title 'seyclock' --class 'seyclock' -o font_size=$FONT_CLOCK sh -c 'tty-clock -c -C 7 -r -b'"
+sleep 0.1
+hyprctl dispatch exec "kitty --title 'seymatrix' --class 'seymatrix' -o font_size=$FONT_GENERAL sh -c 'cmatrix -C white -b -u11'"
+sleep 0.1
+hyprctl dispatch exec "kitty --title 'seycmd' --class 'seycmd' -o font_size=$FONT_TERMINAL --hold fastfetch"
+sleep 0.1
+hyprctl dispatch exec "kitty --title 'seypipes' --class 'seypipes' -o font_size=$FONT_GENERAL sh -c 'pipes.sh -t 1 -c 7'"
+sleep 0.1
+hyprctl dispatch exec "kitty --title 'seycava' --class 'seycava' sh -c 'cava'"
+sleep 0.1
+
+hyprctl keyword input:follow_mouse 1
+sleep 1
+hyprctl dispatch closewindow address:$MY_ADDR

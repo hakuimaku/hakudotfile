@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ "$1" == "0" ]]; then
+    hyprctl keyword monitor "eDP-1, 1920x1080@60, 0x0, 1"
+    notify-send "1080p Monitor setup applied"
+fi
+if [[ "$1" == "1" ]]; then
+    hyprctl keyword monitor "eDP-1, 1280x720@60, 0x0, 1"
+    notify-send "720p Monitor setup applied"
+fi
+
+pkill -f cava-underbar
