@@ -3,7 +3,7 @@ waybar
 rofi
 swaync
 kitty
-sddm
+ly
 uwsm
 btop
 fastfetch
@@ -17,7 +17,6 @@ hypridle
 hyprsunset
 ncdu
 rsync
-wl-screenrec
 wget
 jq
 nemo
@@ -55,6 +54,7 @@ ttf-jetbrains-mono-nerd
 xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
 xdg-utils
+polkit-gnome
 qt6ct
 qt5-wayland
 qt6-wayland
