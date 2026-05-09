@@ -98,6 +98,10 @@ for close them :(
 - Use GTK Settings to apply themes and icons visually
 - Ensure all scripts in `~/.local/bin` have execution permissions
 
+- In Haku Menu choose Cava Underbar for this :) (cava under waybar ofc)
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8c8deab2-51ba-4233-b04d-69bf745972a2" />
+
+
 ### In Haku Menu
 Some module I didn't remove because I'm too lazy:( so pls you manually read in ~/.local/bin/quick_settings or choose Setting in Haku Menu to remove them
 
