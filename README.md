@@ -1,5 +1,8 @@
 # 🎨 Haku Dotfiles
 
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6cfed367-83d1-4d0a-a1d3-16bfb89eff77" />
+
+
 Welcome to Haku Space! A minimal and clean dotfile configuration for Arch Linux with Hyprland.
 
 > **⚠️ Important Notice:** This dotfile is in active development and currently supports **Hyprland 0.54.3 (0.54.x)**. Configuration may break with future Hyprland updates due to changes in windowrules and other settings.
@@ -59,6 +62,28 @@ reboot
 - Update the filename in `~/.config/fastfetch/config.json` to match
 - Or modify the config path to point to your preferred location
 
+### Useful Tips
+SUPER + TAB or press module clock on waybar for Haku Menu
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/54aa6a29-f6db-4efe-b52e-d75bca75ebef" />
+
+in terminal type:
+  ```bash
+  haku
+  ```
+for open haku space in workspace 1 :)
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ffb50375-163a-49e1-a278-f8e9f36f42dc" />
+
+  ```bash
+  haku clear
+  ```
+for close these :(
+
+
+
+
+
+
+
 ## 📝 Customization Tips
 
 - Edit `hyprland.conf` for window rules and general settings
@@ -73,6 +98,7 @@ If configurations don't work:
 2. Verify file permissions with `ls -la ~/.local/bin`
 3. Check config file paths are correctly set
 4. Review individual config files for syntax errors
+5. If module clock doesn't work. Make sure you have set Timezone, Locale for Arch linux
 
 ## 📦 Contributing
 
