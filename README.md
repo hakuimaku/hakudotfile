@@ -1,4 +1,4 @@
-### 🎨 Haku Dotfiles
+# 🎨 Haku Dotfiles
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4640efd9-ec98-46bf-a5d1-19381020a1f3" />
 
@@ -98,7 +98,7 @@ for close them :(
 - Use GTK Settings to apply themes and icons visually
 - Ensure all scripts in `~/.local/bin` have execution permissions
 
-# In Haku Menu
+### In Haku Menu
 Some module I didn't remove because I'm too lazy:( so pls you manually read in ~/.local/bin/quick_settings or choose Setting in Haku Menu to remove them
 
 ## 🐛 Troubleshooting
@@ -110,7 +110,7 @@ If configurations don't work:
 4. Review individual config files for syntax errors
 5. If module clock on waybar doesn't work. Make sure you have set Timezone, Locale for Arch linux
 
-## 📦 Contributing
+# 📦 Contributing
 
 This is a personal dotfile configuration. Feel free to fork and adapt it to your needs!
 
