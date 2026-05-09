@@ -9,7 +9,18 @@ echo ""
 
 
 # Check package dependencies
-DEPENDENCIES=("yay" "jq" "git" "curl")
+# Install yay if not found
+read -p "===> Do you want to install yay now? (y/n): " confirm
+if [[ $confirm == [yY] ]]; then
+    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    (cd /tmp/yay && makepkg -si --noconfirm)
+    rm -rf /tmp/yay
+else
+    echo "You need to install yay to proceed with package installation."
+    exit 1
+fi
+
+DEPENDENCIES=(""jq" "curl" "rush")
 PKG_FILE="$HOME/hakudotfile/pkg.txt"
 
 echo ""
@@ -46,14 +57,28 @@ fi
 echo "📦 Ready to install packages..."
 read -p "===> Do you want to install packages from pkg.txt now? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
-    yay -S --needed --noconfirm - < "$PKG_FILE"
-    if [ $? -eq 0 ]; then
-        echo "✅ Installation completed successfully!"
-    else
-        echo "⚠️ An error occurred during installation."
-        echo "Please check the output above for details and try installing the packages manually."
-        exit 1
-    fi
+    while IFS= read -r package || [[ -n "$package" ]]; do
+        [[ -z "$package" || "$package" =~ ^# ]] && continue
+        
+        echo "-------------------------------------------"
+        echo "📥 Installing: $package"
+        
+        yay -S --needed "$package"
+        
+        if [ $? -eq 0 ]; then
+            echo "✅ [SUCCESS] $package installed."
+        else
+            echo "❌ [FAILED] Could not install $package."
+            read -p "Do you want to continue with the next package? (y/n): " cont
+            if [[ $cont != [yY] ]]; then
+                echo "🛑 Stopping installation as requested."
+                break
+            fi
+        fi
+    done < "$PKG_FILE"
+    
+    echo "-------------------------------------------"
+    echo "✅ All packages from the list have been processed!"
 else
     echo "Skipping package installation."
 fi
@@ -144,6 +169,11 @@ fi
 echo ""
 echo "--- 6. Setup Oh My Zsh and Plugins ---"
 
+if ! command -v zsh &> /dev/null; then
+    echo "📥 Zsh is missing. Installing now..."
+    yay -S --noconfirm zsh
+fi
+
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "Installing Oh My Zsh..."
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
@@ -166,7 +196,7 @@ fi
 # Change default shell to Zsh (Need to enter sudo password)
 if [ "$SHELL" != "/usr/bin/zsh" ]; then
     echo "Changing default shell to Zsh..."
-    chsh -s $(which zsh)
+    sudo chsh -s /usr/bin/zsh $USER
 fi
 
 

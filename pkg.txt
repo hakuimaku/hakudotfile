@@ -45,7 +45,6 @@ network-manager-applet
 bluez
 bluez-utils
 blueman
-localsend
 fcitx5
 fcitx5-bamboo
 fcitx5-configtool
