@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo ""
 echo "=========================================================================="
 echo "Welcome to HakuOS Config Installer!"
 echo "This script will help you set up your HakuOS configuration by installing necessary packages, copying config files, and setting up Oh My Zsh with plugins."
@@ -16,16 +17,20 @@ if [[ $confirm == [yY] ]]; then
     (cd /tmp/yay && makepkg -si --noconfirm)
     cd "$HOME"
     rm -rf /tmp/yay
+    echo "✅ yay has been installed successfully!"
 else
     echo "You need to install yay to proceed with package installation."
 fi
 
-DEPENDENCIES=("yay" "jq" "curl" "rush")
+DEPENDENCIES=("jq" "curl" "rush")
 PKG_FILE="$HOME/hakudotfile/pkg.txt"
 
 echo ""
 echo "--- 1. Check package dependencies ---"
-
+if ! command -v yay &> /dev/null; then
+    echo "❌ [ERROR] yay is not installed. Please install yay to proceed."
+    exit 1
+fi
 for pkg in "${DEPENDENCIES[@]}"; do
     if command -v "$pkg" &> /dev/null; then
         echo "✅ [OK] $pkg DONE!"
@@ -34,7 +39,7 @@ for pkg in "${DEPENDENCIES[@]}"; do
         
         read -p "===> Do you want to install $pkg now? (y/n): " confirm
         if [[ $confirm == [yY] ]]; then
-            sudo pacman -S --noconfirm "$pkg"
+            yay -S --noconfirm "$pkg"
         else
             echo "You need to install $pkg."
             exit 1
@@ -260,10 +265,24 @@ else
 fi
 
 
+# Enable service
+echo ""
+echo "--- 10. Enabling system services ---"
 
+SERVICES=("sddm" "NetworkManager" "bluetooth")
 
+for service in "${SERVICES[@]}"; do
+    if systemctl list-unit-files | grep -q "$service.service"; then
+        echo "⚙️ Enabling $service..."
+        sudo systemctl enable --now "$service"
+    else
+        echo "⚠️ Service $service not found."
+    fi
+done
+
+echo "✅ All services have been processed!"
 
 # Final message
 echo ""
 echo ""
-echo "10. All done! Please restart your pc to apply changes!"
+echo "11. All done! Please restart your pc to apply changes!"

@@ -17,6 +17,7 @@ hypridle
 hyprsunset
 ncdu
 rsync
+wl-screenrec
 wget
 jq
 nemo
@@ -36,8 +37,6 @@ imv
 cava
 pipes.sh
 tty-clock
-wf-recorder
-wl-screenrec
 mpvpaper
 sway-audio-idle-inhibit-git
 networkmanager

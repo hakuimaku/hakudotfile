@@ -157,7 +157,7 @@
                 "today": "<span color='#FF003C'><b><u>{}</u></b></span>"
             }
         },
-        "on-click": "/home/hakuimaku/.local/bin/quick_settings"
+        "on-click": "~/.local/bin/quick_settings"
     },
 
     "battery": {
