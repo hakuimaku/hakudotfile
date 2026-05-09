@@ -3,6 +3,7 @@ waybar
 rofi
 swaync
 kitty
+awww
 ly
 uwsm
 btop
