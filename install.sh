@@ -83,6 +83,8 @@ FOLDERS=(
     "$HOME/.config"
     "$HOME/.icons"
     "$HOME/.themes"
+    "$HOME/Pictures"
+    "$HOME/Pictures/Wallpapers"
 )
 
 for folder in "${FOLDERS[@]}"; do
@@ -191,6 +193,9 @@ fi
 # Define source and destination paths for other files
 DEST_OTHER="$HOME"
 SOURCE_ROOT="$HOME/hakudotfile"
+DEST_WALLPAPER="$HOME/Pictures/Wallpapers"
+SOURCE_WALLPAPER="$HOME/hakudotfile/Wallpapers"
+
 
 echo ""
 echo "--- 7. Ready to deploy other files to home directory ---"
@@ -217,6 +222,8 @@ if [[ $confirm == [yY] ]]; then
     done
     cp -f "$SOURCE_ROOT/fastfetch.jpg" "$HOME/Documents/"
     echo "✅ Did copy fastfetch.jpg to $HOME/Documents/"
+    cp -rf "$SOURCE_WALLPAPER"/. "$DEST_WALLPAPER/"
+    echo "✅ Did copy wallpapers to $DEST_WALLPAPER"
 else
     echo "Skipping other files backup."
 fi
