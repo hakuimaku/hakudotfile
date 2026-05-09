@@ -1,10 +1,10 @@
 ### 🎨 Haku Dotfiles
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6cfed367-83d1-4d0a-a1d3-16bfb89eff77" />
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4640efd9-ec98-46bf-a5d1-19381020a1f3" />
 
 
 
-== YEAH
+== YEAH!! It has been released :D
 Welcome to Haku Space! A minimal and clean dotfile configuration for Arch Linux with Hyprland.
 
 Include: Waybar, Rofi, Kitty, Zsh, Zen Browser, Networkmanager, Nemo, ...
