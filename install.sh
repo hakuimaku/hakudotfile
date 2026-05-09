@@ -1,9 +1,18 @@
 #!/bin/bash
 
+echo "=========================================================================="
+echo "Welcome to HakuOS Config Installer!"
+echo "This script will help you set up your HakuOS configuration by installing necessary packages, copying config files, and setting up Oh My Zsh with plugins."
+echo "Please follow the prompts to complete the installation process."
+echo "=========================================================================="
+echo ""
+
+
 # Check package dependencies
 DEPENDENCIES=("yay" "jq" "git" "curl")
 PKG_FILE="$HOME/hakudotfile/pkg.txt"
 
+echo ""
 echo "--- 1. Check package dependencies ---"
 
 for pkg in "${DEPENDENCIES[@]}"; do
@@ -12,7 +21,7 @@ for pkg in "${DEPENDENCIES[@]}"; do
     else
         echo "❌ [ERROR] $pkg DOES NOT EXIST!"
         
-        read -p "Do you want to install $pkg now? (y/n): " confirm
+        read -p "===> Do you want to install $pkg now? (y/n): " confirm
         if [[ $confirm == [yY] ]]; then
             sudo pacman -S --noconfirm "$pkg"
         else
@@ -26,6 +35,7 @@ echo "--- Everything is ready to install Config! ---"
 
 
 # Install packages from pkg.txt
+echo ""
 echo "--- 2. Ready to install packages from pkg.txt ---"
 
 if [[ ! -f "$PKG_FILE" ]]; then
@@ -34,13 +44,14 @@ if [[ ! -f "$PKG_FILE" ]]; then
 fi
 
 echo "📦 Ready to install packages..."
-read -p "Do you want to install packages from pkg.txt now? (y/n): " confirm
+read -p "===> Do you want to install packages from pkg.txt now? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
     yay -S --needed --noconfirm - < "$PKG_FILE"
     if [ $? -eq 0 ]; then
         echo "✅ Installation completed successfully!"
     else
         echo "⚠️ An error occurred during installation."
+        echo "Please check the output above for details and try installing the packages manually."
         exit 1
     fi
 else
@@ -50,7 +61,7 @@ fi
 
 
 
-
+echo ""
 echo "--- 3. Ready to initialize system directories ---"
 
 # List of directories to create
@@ -58,6 +69,8 @@ FOLDERS=(
     "$HOME/Documents"
     "$HOME/.local/bin"
     "$HOME/.config"
+    "$HOME/.icons"
+    "$HOME/.themes"
 )
 
 for folder in "${FOLDERS[@]}"; do
@@ -75,13 +88,14 @@ done
 SOURCE_CONFIG="$HOME/hakudotfile/config"
 DEST_CONFIG="$HOME/.config"
 
-echo "--- Ready to deploy config to ~/.config ---"
+echo ""
+echo "--- 4. Ready to deploy config to ~/.config ---"
 
 # Copy config files from source to destination
-read -p "Do you want to backup and copy your current config now? (y/n): " confirm
+read -p "===> Do you want to backup and copy your current config now? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
     if [ -d "$SOURCE_CONFIG" ]; then
-        
+        echo "📂 Ready to copy config files..."
         # Make backup if destination config already exists
         if [ -d "$DEST_CONFIG" ]; then
             TIMESTAMP=$(date +%Y%m%d_%H%M%S)
@@ -96,7 +110,7 @@ if [[ $confirm == [yY] ]]; then
         echo "✅ Copy (config files) completed to $DEST_CONFIG"
     else
         echo "❌ [ERROR] Not found directory $SOURCE_CONFIG"
-        exit 1
+        echo "Please copy it manually (config files) to $DEST_CONFIG"
     fi
 else
     echo "Skipping config backup."
@@ -107,9 +121,10 @@ fi
 SOURCE_BIN="$HOME/hakudotfile/bin"
 DEST_BIN="$HOME/.local/bin"
 
-echo "--- 4. Ready to deploy bin files to ~/.local/bin ---"
+echo ""
+echo "--- 5. Ready to deploy bin files to ~/.local/bin ---"
 
-read -p "Do you want to backup and copy your current local bin now? (y/n): " confirm
+read -p "===> Do you want to backup and copy your current local bin now? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
     # Copy bin files from source to destination
     if [ -d "$SOURCE_BIN" ]; then
@@ -118,14 +133,16 @@ if [[ $confirm == [yY] ]]; then
         chmod +x "$DEST_BIN"/* 2>/dev/null
     else
         echo "❌ [ERROR] Not found directory $SOURCE_BIN"
-        exit 1
+        echo "Please copy it manually (bin files) to $DEST_BIN"
     fi
 else
     echo "Skipping local bin backup."
 fi
 
 
-echo "--- 5. Setup Oh My Zsh and Plugins ---"
+# Install Oh My Zsh and plugins
+echo ""
+echo "--- 6. Setup Oh My Zsh and Plugins ---"
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
     echo "Installing Oh My Zsh..."
@@ -146,12 +163,6 @@ if [ ! -d "$ZSH_CUSTOM/zsh-syntax-highlighting" ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/zsh-syntax-highlighting"
 fi
 
-# Update .zshrc to include plugins
-if [ -f "$HOME/.zshrc" ]; then
-    sed -i 's/plugins=(git)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/g' "$HOME/.zshrc"
-    echo "✅ Updated .zshrc to include plugins"
-fi
-
 # Change default shell to Zsh (Need to enter sudo password)
 if [ "$SHELL" != "/usr/bin/zsh" ]; then
     echo "Changing default shell to Zsh..."
@@ -164,9 +175,10 @@ fi
 DEST_OTHER="$HOME"
 SOURCE_ROOT="$HOME/hakudotfile"
 
-echo "--- 6. Ready to deploy other files to home directory ---"
+echo ""
+echo "--- 7. Ready to deploy other files to home directory ---"
 
-read -p "Do you want to backup and copy your other files now? (y/n): " confirm
+read -p "===> Do you want to backup and copy your other files now? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
     FILES_TO_COPY=(".nanorc" ".zshrc")
 
@@ -183,6 +195,7 @@ if [[ $confirm == [yY] ]]; then
             echo "✅ Did copy $file to $DEST_OTHER"
         else
             echo "⚠️ File not found: $file in $SOURCE_ROOT, skipping."
+            echo "Please copy it manually ($file) to $DEST_OTHER"
         fi
     done
     cp -f "$SOURCE_ROOT/fastfetch.jpg" "$HOME/Documents/"
@@ -191,3 +204,54 @@ else
     echo "Skipping other files backup."
 fi
 
+
+# Define source and destination paths for icons
+SOURCE_ICON="$HOME/hakudotfile/icons"
+DEST_ICON="$HOME/.icons"
+
+echo ""
+echo "--- 8. Ready to deploy icons to ~/.icons ---"
+
+read -p "===> Do you want to backup and copy your icons now? (y/n): " confirm
+if [[ $confirm == [yY] ]]; then
+    if [ -d "$SOURCE_ICON" ]; then
+        cp -rf "$SOURCE_ICON"/. "$DEST_ICON/"
+        echo "✅ Copy (icons) completed to $DEST_ICON"
+    else
+        echo "❌ [ERROR] Not found directory $SOURCE_ICON"
+        echo "Please copy it manually (icons) to $DEST_ICON"
+    fi
+else
+    echo "Skipping icons backup."
+fi
+
+
+
+# Define source and destination paths for themes
+SOURCE_THEME="$HOME/hakudotfile/themes"
+DEST_THEME="$HOME/.themes"
+
+echo ""
+echo "--- 9. Ready to deploy themes to ~/.themes ---"
+
+read -p "===> Do you want to backup and copy your themes now? (y/n): " confirm
+if [[ $confirm == [yY] ]]; then
+    if [ -d "$SOURCE_THEME" ]; then
+        cp -rf "$SOURCE_THEME"/. "$DEST_THEME/"
+        echo "✅ Copy (themes) completed to $DEST_THEME"
+    else
+        echo "❌ [ERROR] Not found directory $SOURCE_THEME"
+        echo "Please copy it manually (themes) to $DEST_THEME"
+    fi
+else
+    echo "Skipping themes backup."
+fi
+
+
+
+
+
+# Final message
+echo ""
+echo ""
+echo "10. All done! Please restart your pc to apply changes!"
