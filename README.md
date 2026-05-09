@@ -68,7 +68,7 @@ reboot
 - Or modify the config path to point to your preferred location
 
 ### Useful Tips
-- SUPER + TAB or press module clock on waybar for Haku Menu
+- SUPER + TAB/ or press module clock on waybar/ or type "quick_settings" in kitty to open Haku Menu :p
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/54aa6a29-f6db-4efe-b52e-d75bca75ebef" />
 
 
@@ -97,6 +97,9 @@ for close them :(
 - Modify `keybinding.conf` for keyboard shortcuts
 - Use GTK Settings to apply themes and icons visually
 - Ensure all scripts in `~/.local/bin` have execution permissions
+
+# In Haku Menu
+Some module I didn't remove because I'm too lazy:( so pls you manually read in ~/.local/bin/quick_settings or choose Setting in Haku Menu to remove them
 
 ## 🐛 Troubleshooting
 
