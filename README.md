@@ -1,9 +1,14 @@
-# 🎨 Haku Dotfiles
+### 🎨 Haku Dotfiles
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/6cfed367-83d1-4d0a-a1d3-16bfb89eff77" />
 
 
+
+== YEAH
 Welcome to Haku Space! A minimal and clean dotfile configuration for Arch Linux with Hyprland.
+
+Include: Waybar, Rofi, Kitty, Zsh, Zen Browser, Networkmanager, Nemo, ...
+Use ly for login
 
 > **⚠️ Important Notice:** This dotfile is in active development and currently supports **Hyprland 0.54.3 (0.54.x)**. Configuration may break with future Hyprland updates due to changes in windowrules and other settings.
 
@@ -63,10 +68,13 @@ reboot
 - Or modify the config path to point to your preferred location
 
 ### Useful Tips
-SUPER + TAB or press module clock on waybar for Haku Menu
+- SUPER + TAB or press module clock on waybar for Haku Menu
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/54aa6a29-f6db-4efe-b52e-d75bca75ebef" />
 
-in terminal type:
+
+
+
+- in terminal type:
   ```bash
   haku
   ```
@@ -76,16 +84,15 @@ for open haku space in workspace 1 :)
   ```bash
   haku clear
   ```
-for close these :(
+for close them :(
 
 
-
-
-
-
-
-## 📝 Customization Tips
-
+- SUPER + Y for change wallpaper
+- SUPER SHIFT + Y for change lively wallpaper (Video)
+- Wallpaper (store in ~/Pictures/Wallpapers)
+- Lively wallpaper (store in ~/Videos/Wallpapers)
+  
+- In Haku Space (which open by SUPER + TAB). You can change app to open by Setting at the end
 - Edit `hyprland.conf` for window rules and general settings
 - Modify `keybinding.conf` for keyboard shortcuts
 - Use GTK Settings to apply themes and icons visually
@@ -98,7 +105,7 @@ If configurations don't work:
 2. Verify file permissions with `ls -la ~/.local/bin`
 3. Check config file paths are correctly set
 4. Review individual config files for syntax errors
-5. If module clock doesn't work. Make sure you have set Timezone, Locale for Arch linux
+5. If module clock on waybar doesn't work. Make sure you have set Timezone, Locale for Arch linux
 
 ## 📦 Contributing
 
