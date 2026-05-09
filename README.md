@@ -19,7 +19,7 @@ Use ly for login
 - **Hyprland** (0.54.x) already installed before using this dotfile
 - Basic knowledge of shell configuration and file permissions
 
-> **Recommendation:** Manually copy configurations rather than using the automated installer. Review `pkg.txt` to select which packages to install.
+# **Recommendation:** Manually copy configurations rather than using the automated installer. Review `pkg.txt` to select which packages to install.
 
 ## 🚀 Installation
 
