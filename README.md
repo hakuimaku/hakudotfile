@@ -11,6 +11,7 @@ Include: Waybar, Rofi, Kitty, Zsh, Zen Browser, Networkmanager, Nemo, ...
 Use ly for login
 
 > **⚠️ Important Notice:** This dotfile is in active development and currently supports **Hyprland 0.54.3 (0.54.x)**. Configuration may break with future Hyprland updates due to changes in windowrules and other settings.
+> Recommend Monitor eDP-1, 1920p and 720p (because in hyprland.conf I use)
 
 ## 📋 Prerequisites
 
@@ -68,7 +69,7 @@ reboot
 - Or modify the config path to point to your preferred location
 
 ### Useful Tips
-- SUPER + TAB/ or press module clock on waybar/ or type "quick_settings" in kitty to open Haku Menu :p
+- SUPER + TAB or press module clock on waybar or type "quick_settings" in kitty to open Haku Menu :p
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/54aa6a29-f6db-4efe-b52e-d75bca75ebef" />
 
 
