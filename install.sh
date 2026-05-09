@@ -14,13 +14,13 @@ read -p "===> Do you want to install yay now? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
     git clone https://aur.archlinux.org/yay.git /tmp/yay
     (cd /tmp/yay && makepkg -si --noconfirm)
+    cd "$HOME"
     rm -rf /tmp/yay
 else
     echo "You need to install yay to proceed with package installation."
-    exit 1
 fi
 
-DEPENDENCIES=(""jq" "curl" "rush")
+DEPENDENCIES=("yay" "jq" "curl" "rush")
 PKG_FILE="$HOME/hakudotfile/pkg.txt"
 
 echo ""
@@ -57,25 +57,7 @@ fi
 echo "📦 Ready to install packages..."
 read -p "===> Do you want to install packages from pkg.txt now? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
-    while IFS= read -r package || [[ -n "$package" ]]; do
-        [[ -z "$package" || "$package" =~ ^# ]] && continue
-        
-        echo "-------------------------------------------"
-        echo "📥 Installing: $package"
-        
-        yay -S --needed "$package"
-        
-        if [ $? -eq 0 ]; then
-            echo "✅ [SUCCESS] $package installed."
-        else
-            echo "❌ [FAILED] Could not install $package."
-            read -p "Do you want to continue with the next package? (y/n): " cont
-            if [[ $cont != [yY] ]]; then
-                echo "🛑 Stopping installation as requested."
-                break
-            fi
-        fi
-    done < "$PKG_FILE"
+    yay -S --noconfirm - < "$PKG_FILE"
     
     echo "-------------------------------------------"
     echo "✅ All packages from the list have been processed!"
