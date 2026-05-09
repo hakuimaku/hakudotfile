@@ -269,7 +269,7 @@ fi
 echo ""
 echo "--- 10. Enabling system services ---"
 
-SERVICES=("ly" "NetworkManager" "bluetooth")
+SERVICES=("NetworkManager" "bluetooth")
 
 for service in "${SERVICES[@]}"; do
     if systemctl list-unit-files | grep -q "$service.service"; then
@@ -279,6 +279,8 @@ for service in "${SERVICES[@]}"; do
         echo "⚠️ Service $service not found."
     fi
 done
+sudo systemctl enable --now ly@ttyX.service
+echo "⚙️ Enabling ly..."
 
 echo "--- Configuring Nemo as default file manager ---"
 xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
