@@ -1,0 +1,88 @@
+
+#!/bin/bash
+
+
+RES=$(hyprctl monitors -j | jq -r '.[] | select(.name=="eDP-1") | .width')
+
+
+if [ "$RES" -le 1280 ]; then
+    # 720p
+    FONT_CLOCK=7
+    FONT_GENERAL=6
+    FONT_TERMINAL=10
+    RULES_SIZE=(
+        "size 200 300, match:title seyclock"
+        "size 200 349, match:title seymatrix"
+        "size 847 655, match:title seycmd"
+        "size 193 655, match:title seycava"
+    )
+    RULES_MOVE=(
+        "move 10 55, match:title seyclock"
+        "move 10 361, match:title seymatrix"
+        "move 220 55, match:title seycmd"
+        "move 1077 55, match:title seycava"
+    )
+else
+    # 1080p
+    FONT_CLOCK=10
+    FONT_GENERAL=12
+    FONT_TERMINAL=15
+    RULES_SIZE=(
+        "size 300 450, match:title seyclock"
+        "size 300 550, match:title seymatrix"
+        "size 1270 1010, match:title seycmd"
+        "size 290 1010, match:title seycava"
+    )
+    RULES_MOVE=(
+        "move 15 55, match:title seyclock"
+        "move 15 515, match:title seymatrix"
+        "move 330 55, match:title seycmd"
+        "move 1615 55, match:title seycava"
+    )
+fi
+
+
+for rule in "${RULES_SIZE[@]}"; do hyprctl keyword windowrule "$rule"; done
+for rule in "${RULES_MOVE[@]}"; do hyprctl keyword windowrule "$rule"; done
+
+
+pkill -f cavaunderbar
+MY_INFO=$(hyprctl activewindow -j)
+MY_ADDR=$(echo "$MY_INFO" | jq -r '.address')
+
+
+cleanup_ws1() {
+    TARGETS=$(hyprctl clients -j | jq -r '.[] | select(.workspace.id == 1) | .address')
+
+    for win in $TARGETS; do
+        if [[ "$win" != "$MY_ADDR" ]]; then
+            hyprctl dispatch closewindow address:$win
+        fi
+    done
+    sleep 0.05
+}
+
+
+cleanup_ws1
+
+if [[ "$1" == "clear" ]]; then
+    hyprctl dispatch closewindow address:$MY_ADDR
+    exit 0
+fi
+
+hyprctl keyword input:follow_mouse 0
+hyprctl dispatch workspace 1
+sleep 0.05
+
+hyprctl dispatch exec "kitty --title 'seyclock' --class 'seyclock' -o font_size=$FONT_CLOCK sh -c 'tty-clock -c -C 7 -r -b'"
+sleep 0.1
+hyprctl dispatch exec "kitty --title 'seymatrix' --class 'seymatrix' -o font_size=$FONT_GENERAL sh -c 'cmatrix -C white -b -u11'"
+sleep 0.1
+hyprctl dispatch exec "kitty --title 'seycmd' --class 'seycmd' -o font_size=$FONT_TERMINAL --hold fastfetch"
+sleep 0.1
+hyprctl dispatch exec "kitty --title 'seycava' --class 'seycava' sh -c 'cava -p ~/.config/cava/config_hakunet'"
+
+
+hyprctl keyword input:follow_mouse 1
+sleep 1
+hyprctl dispatch closewindow address:$MY_ADDR

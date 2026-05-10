@@ -64,3 +64,4 @@ visual-studio-code-bin
 chafa
 imagemagick
 grim
+cmatrix
