@@ -95,6 +95,19 @@ to open haku space in workspace 1 :)
 to close them :(
 
 
+- in terminal type:
+  ```bash
+  hakunet
+  ```
+to open haku space - hakunet in workspace 1 :)
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/27134ee3-d6d9-43c3-a011-32e9512244d8" />
+
+  ```bash
+  hakunet clear
+  ```
+to close them :(
+
+
 - SUPER + Y to change wallpaper
 - SUPER SHIFT + Y to change lively wallpaper (Video)
 - Wallpaper (store in ~/Pictures/Wallpapers)
@@ -121,6 +134,8 @@ If configurations don't work:
 3. Check config file paths are correctly set
 4. Review individual config files for syntax errors
 5. If module clock on waybar doesn't work. Make sure you have set Timezone, Locale for Arch linux
+6. Lively Wallpaper by SUPER SHIFT + Y didnt show or didnt have thumbnail?
+   >> Create folder Preview (~/Videos/Wallpapers/Preview) and add image .jpg/.png (same name with video) to appear thumbnail in rofi
 
 # 📦 Contributing
 
