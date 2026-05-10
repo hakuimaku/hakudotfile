@@ -70,8 +70,8 @@ reboot
 - Or modify the config path to point to your preferred location
 
 ### Waybar
-- To enable moudle Clock, go to waybar config file and change your timezone, locale.gen
-- Use scroll mouse to change sound/brightness value
+- To enable module Clock, go to waybar config file and change your timezone, locale.gen
+- Use scroll mouse to change volume/brightness value
 - On Brightness module, left-click to enable hyprsunset and right-click to disable it
 - On Volume module, left-click to Mute, right-click to open pavucontrol
 
