@@ -61,3 +61,6 @@ qt5-wayland
 qt6-wayland
 zen-browser-bin
 visual-studio-code-bin
+chafa
+imagemagick
+grim

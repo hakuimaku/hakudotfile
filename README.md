@@ -4,8 +4,9 @@
 
 
 
-== YEAH!! It has been released :D
-Welcome to Haku Space! A minimal and clean dotfile configuration for Arch Linux with Hyprland.
+== YEAH!! It has been released :D.
+
+*WELCOME TO HAKU SPACE! A minimal and clean dotfile configuration for Arch Linux with Hyprland.
 
 Include: Waybar, Rofi, Kitty, Zsh, Zen Browser, Networkmanager, Nemo, ...
 Use ly for login
@@ -19,7 +20,7 @@ Use ly for login
 - **Hyprland** (0.54.x) already installed before using this dotfile
 - Basic knowledge of shell configuration and file permissions
 
-# **Recommendation:** Manually copy configurations rather than using the automated installer. Review `pkg.txt` to select which packages to install.
+## **Strongly Recommendation:** Manually copy configurations rather than using the automated installer. Review `pkg.txt` to select which packages to install.
 
 ## 🚀 Installation
 
@@ -68,6 +69,12 @@ reboot
 - Update the filename in `~/.config/fastfetch/config.json` to match
 - Or modify the config path to point to your preferred location
 
+### Waybar
+- To enable moudle Clock, go to waybar config file and change your timezone, locale.gen
+- Use scroll mouse to change sound/brightness value
+- On Brightness module, left-click to enable hyprsunset and right-click to disable it
+- On Volume module, left-click to Mute, right-click to open pavucontrol
+
 ### Useful Tips
 - SUPER + TAB or press module clock on waybar or type "quick_settings" in kitty to open Haku Menu :p
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/54aa6a29-f6db-4efe-b52e-d75bca75ebef" />
@@ -79,21 +86,21 @@ reboot
   ```bash
   haku
   ```
-for open haku space in workspace 1 :)
+to open haku space in workspace 1 :)
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ffb50375-163a-49e1-a278-f8e9f36f42dc" />
 
   ```bash
   haku clear
   ```
-for close them :(
+to close them :(
 
 
-- SUPER + Y for change wallpaper
-- SUPER SHIFT + Y for change lively wallpaper (Video)
+- SUPER + Y to change wallpaper
+- SUPER SHIFT + Y to change lively wallpaper (Video)
 - Wallpaper (store in ~/Pictures/Wallpapers)
 - Lively wallpaper (store in ~/Videos/Wallpapers)
   
-- In Haku Space (which open by SUPER + TAB). You can change app to open by Setting at the end
+- In Haku Space (which open by SUPER + TAB). You can change rofi "app to open" by Setting at the end of list
 - Edit `hyprland.conf` for window rules and general settings
 - Modify `keybinding.conf` for keyboard shortcuts
 - Use GTK Settings to apply themes and icons visually
@@ -118,6 +125,7 @@ If configurations don't work:
 # 📦 Contributing
 
 This is a personal dotfile configuration. Feel free to fork and adapt it to your needs!
+tiktok: @hakuimaku2372
 
 ---
 

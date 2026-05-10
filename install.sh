@@ -1,41 +1,42 @@
 #!/bin/bash
 
 echo ""
-echo "=========================================================================="
-echo "Welcome to HakuOS Config Installer!"
-echo "This script will help you set up your HakuOS configuration by installing necessary packages, copying config files, and setting up Oh My Zsh with plugins."
+echo "================================================================================================"
+echo "WELCOME TO HAKUOS CONFIG INSTALLER"
+echo "This script will help you set up your HakuOS configuration"
+echo "It will install necessary packages, copying config files and setting up Oh My Zsh with plugins."
 echo "Please follow the prompts to complete the installation process."
-echo "=========================================================================="
+echo "================================================================================================"
 echo ""
 
 
 # Check package dependencies
 # Install yay if not found
-read -p "===> Do you want to install yay now? (y/n): " confirm
+read -p "===> Do you want to install yay now)? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
     git clone https://aur.archlinux.org/yay.git /tmp/yay
     (cd /tmp/yay && makepkg -si --noconfirm)
     cd "$HOME"
     rm -rf /tmp/yay
-    echo "✅ yay has been installed successfully!"
+    echo ":: yay has been installed successfully!"
 else
     echo "You need to install yay to proceed with package installation."
 fi
 
-DEPENDENCIES=("jq" "curl" "rush")
+DEPENDENCIES=("git" "curl")
 PKG_FILE="$HOME/hakudotfile/pkg.txt"
 
 echo ""
 echo "--- 1. Check package dependencies ---"
 if ! command -v yay &> /dev/null; then
-    echo "❌ [ERROR] yay is not installed. Please install yay to proceed."
+    echo "XXX [ERROR] yay is not installed. Please install yay to proceed."
     exit 1
 fi
 for pkg in "${DEPENDENCIES[@]}"; do
     if command -v "$pkg" &> /dev/null; then
-        echo "✅ [OK] $pkg DONE!"
+        echo ":: [OK] $pkg DONE!"
     else
-        echo "❌ [ERROR] $pkg DOES NOT EXIST!"
+        echo "XXX [ERROR] $pkg DOES NOT EXIST!"
         
         read -p "===> Do you want to install $pkg now? (y/n): " confirm
         if [[ $confirm == [yY] ]]; then
@@ -47,6 +48,9 @@ for pkg in "${DEPENDENCIES[@]}"; do
     fi
 done
 
+echo ""
+echo ""
+echo "================================================================================================"
 echo "--- Everything is ready to install Config! ---"
 
 
@@ -54,18 +58,17 @@ echo "--- Everything is ready to install Config! ---"
 echo ""
 echo "--- 2. Ready to install packages from pkg.txt ---"
 
-if [[ ! -f "$PKG_FILE" ]]; then
-    echo "❌ [ERROR] Not found file $PKG_FILE"
-    exit 1
-fi
-
-echo "📦 Ready to install packages..."
+echo ":: Ready to install packages..."
 read -p "===> Do you want to install packages from pkg.txt now? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
+    if [[ ! -f "$PKG_FILE" ]]; then
+        echo "XXX [ERROR] Not found file $PKG_FILE"
+        exit 1
+    fi
     yay -S --noconfirm - < "$PKG_FILE"
     
     echo "-------------------------------------------"
-    echo "✅ All packages from the list have been processed!"
+    echo ":: All packages from the list have been processed!"
 else
     echo "Skipping package installation."
 fi
@@ -90,9 +93,9 @@ FOLDERS=(
 for folder in "${FOLDERS[@]}"; do
     if [ ! -d "$folder" ]; then
         mkdir -p "$folder"
-        echo "📁 Created directory: $folder"
+        echo ":: Created directory: $folder"
     else
-        echo "✅ Directory already exists: $folder"
+        echo ":: Directory already exists: $folder"
     fi
 done
 
@@ -109,11 +112,11 @@ echo "--- 4. Ready to deploy config to ~/.config ---"
 read -p "===> Do you want to backup and copy your current config now? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
     if [ -d "$SOURCE_CONFIG" ]; then
-        echo "📂 Ready to copy config files..."
+        echo ":: Ready to copy config files..."
         # Make backup if destination config already exists
         if [ -d "$DEST_CONFIG" ]; then
             TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-            echo "📂 Ready to create backup for current config..."
+            echo ":: Ready to create backup for current config..."
             mv "$DEST_CONFIG" "${DEST_CONFIG}_backup_$TIMESTAMP"
             mkdir -p "$DEST_CONFIG"
         fi
@@ -121,9 +124,9 @@ if [[ $confirm == [yY] ]]; then
         # Proceed with copying config files
         cp -rf "$SOURCE_CONFIG"/. "$DEST_CONFIG/"
         
-        echo "✅ Copy (config files) completed to $DEST_CONFIG"
+        echo ":: Copy (config files) completed to $DEST_CONFIG"
     else
-        echo "❌ [ERROR] Not found directory $SOURCE_CONFIG"
+        echo "XXX [ERROR] Not found directory $SOURCE_CONFIG"
         echo "Please copy it manually (config files) to $DEST_CONFIG"
     fi
 else
@@ -143,10 +146,10 @@ if [[ $confirm == [yY] ]]; then
     # Copy bin files from source to destination
     if [ -d "$SOURCE_BIN" ]; then
         cp -rf "$SOURCE_BIN"/. "$DEST_BIN/"
-        echo "✅ Copy (bin files) completed to $DEST_BIN"
+        echo ":: Copy (bin files) completed to $DEST_BIN"
         chmod +x "$DEST_BIN"/* 2>/dev/null
     else
-        echo "❌ [ERROR] Not found directory $SOURCE_BIN"
+        echo "XXX [ERROR] Not found directory $SOURCE_BIN"
         echo "Please copy it manually (bin files) to $DEST_BIN"
     fi
 else
@@ -159,15 +162,15 @@ echo ""
 echo "--- 6. Setup Oh My Zsh and Plugins ---"
 
 if ! command -v zsh &> /dev/null; then
-    echo "📥 Zsh is missing. Installing now..."
+    echo ":: Zsh is missing. Installing now..."
     yay -S --noconfirm zsh
 fi
 
 if [ ! -d "$HOME/.oh-my-zsh" ]; then
-    echo "Installing Oh My Zsh..."
+    echo ":: Installing Oh My Zsh..."
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 else
-    echo "✅ Oh My Zsh already installed."
+    echo ":: Oh My Zsh already installed."
 fi
 
 ZSH_CUSTOM="$HOME/.oh-my-zsh/custom/plugins"
@@ -209,21 +212,21 @@ if [[ $confirm == [yY] ]]; then
             # Make backup if destination file already exists
             if [ -f "$DEST_OTHER/$file" ]; then
                 mv "$DEST_OTHER/$file" "$DEST_OTHER/${file}.bak"
-                echo "📦 Did create backup for $file"
+                echo ":: Did create backup for $file"
             fi
             
             # Copy file from source to destination
             cp -f "$SOURCE_ROOT/$file" "$DEST_OTHER/"
-            echo "✅ Did copy $file to $DEST_OTHER"
+            echo ":: Did copy $file to $DEST_OTHER"
         else
-            echo "⚠️ File not found: $file in $SOURCE_ROOT, skipping."
+            echo "!!! File not found: $file in $SOURCE_ROOT, skipping."
             echo "Please copy it manually ($file) to $DEST_OTHER"
         fi
     done
     cp -f "$SOURCE_ROOT/fastfetch.jpg" "$HOME/Documents/"
-    echo "✅ Did copy fastfetch.jpg to $HOME/Documents/"
+    echo ":: Did copy fastfetch.jpg to $HOME/Documents/"
     cp -rf "$SOURCE_WALLPAPER"/. "$DEST_WALLPAPER/"
-    echo "✅ Did copy wallpapers to $DEST_WALLPAPER"
+    echo ":: Did copy wallpapers to $DEST_WALLPAPER"
 else
     echo "Skipping other files backup."
 fi
@@ -240,9 +243,9 @@ read -p "===> Do you want to backup and copy your icons now? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
     if [ -d "$SOURCE_ICON" ]; then
         cp -rf "$SOURCE_ICON"/. "$DEST_ICON/"
-        echo "✅ Copy (icons) completed to $DEST_ICON"
+        echo ":: Copy (icons) completed to $DEST_ICON"
     else
-        echo "❌ [ERROR] Not found directory $SOURCE_ICON"
+        echo "XXX [ERROR] Not found directory $SOURCE_ICON"
         echo "Please copy it manually (icons) to $DEST_ICON"
     fi
 else
@@ -262,9 +265,9 @@ read -p "===> Do you want to backup and copy your themes now? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
     if [ -d "$SOURCE_THEME" ]; then
         cp -rf "$SOURCE_THEME"/. "$DEST_THEME/"
-        echo "✅ Copy (themes) completed to $DEST_THEME"
+        echo ":: Copy (themes) completed to $DEST_THEME"
     else
-        echo "❌ [ERROR] Not found directory $SOURCE_THEME"
+        echo "XXX [ERROR] Not found directory $SOURCE_THEME"
         echo "Please copy it manually (themes) to $DEST_THEME"
     fi
 else
@@ -280,18 +283,21 @@ SERVICES=("NetworkManager" "bluetooth")
 
 for service in "${SERVICES[@]}"; do
     if systemctl list-unit-files | grep -q "$service.service"; then
-        echo "⚙️ Enabling $service..."
+        echo ":: Enabling $service..."
         sudo systemctl enable --now "$service"
     else
-        echo "⚠️ Service $service not found."
+        echo "!!! Service $service not found."
     fi
 done
+
+# Enable ly and disable getty on ttyX
 sudo systemctl enable --now ly@ttyX.service
-echo "⚙️ Enabling ly..."
+sudo systemctl disable --now getty@ttyX.service
+echo ":: Enabling ly..."
 
 echo "--- Configuring Nemo as default file manager ---"
 xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
-update-desktop-database ~/.local/share/applications
+
 SERVICES_EXTRA=("gvfsd")
 for srv in "${SERVICES_EXTRA[@]}"; do
     if systemctl --user list-unit-files | grep -q "$srv"; then
@@ -304,4 +310,4 @@ echo "✅ All services have been processed!"
 # Final message
 echo ""
 echo ""
-echo "11. All done! Please restart your pc to apply changes!"
+echo ">>>>>>>>>> All done! Please restart your pc to apply changes!"

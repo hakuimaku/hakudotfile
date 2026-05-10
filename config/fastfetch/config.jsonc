@@ -1,15 +1,15 @@
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
+        "source": "~/Documents/fastfetch.jpg",
         "type": "kitty",
-        "width": 22,  // Thử giảm con số này xuống (đây là số cột ký tự)
-        "height": 10, // Hoặc giới hạn chiều cao
+        "width": 22,
+        "height": 10,
         "padding": {
         "top": 2,          // Top padding
         "left": 2,         // Left padding
         "right": 2         // Right padding
         },
-        "source": "/home/hakuimaku/Documents/fastfetch.jpg",
         "color": {
             "1": "white"
         }
