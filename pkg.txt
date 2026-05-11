@@ -1,4 +1,4 @@
-hyprland
+hyprland 0.54.3-4
 waybar
 rofi
 swaync
