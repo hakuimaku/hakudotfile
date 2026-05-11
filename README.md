@@ -12,7 +12,7 @@ Include: Waybar, Rofi, Kitty, Zsh, Zen Browser, Networkmanager, Nemo, ...
 Use ly for login
 
 > **⚠️ Important Notice:** This dotfile is in active development and currently supports **Hyprland 0.54.3 (0.54.x)**. Configuration may break with future Hyprland updates due to changes in windowrules and other settings.
-> Recommend Monitor eDP-1, 1920p and 720p (because in hyprland.conf I use)
+> Recommend Monitor eDP-1, 1920p and 720p (because in hyprland.conf, Haku Space I use). You can change it manually.
 
 ## 📋 Prerequisites
 
@@ -21,6 +21,7 @@ Use ly for login
 - Basic knowledge of shell configuration and file permissions
 
 ## **Strongly Recommendation:** Manually copy configurations rather than using the automated installer. Review `pkg.txt` to select which packages to install.
+## If it is your first time install arch, just use install.sh script to quick setup
 
 ## 🚀 Installation
 
@@ -87,7 +88,8 @@ reboot
   haku
   ```
 to open haku space in workspace 1 :)
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/ffb50375-163a-49e1-a278-f8e9f36f42dc" />
+<img width="1920" height="1080" alt="20260511_113021" src="https://github.com/user-attachments/assets/fb412e1d-44f3-4af0-8139-c0f6638bcb2a" />
+
 
   ```bash
   haku clear
@@ -100,12 +102,14 @@ to close them :(
   hakunet
   ```
 to open haku space - hakunet in workspace 1 :)
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/27134ee3-d6d9-43c3-a011-32e9512244d8" />
+<img width="1920" height="1080" alt="20260511_113038" src="https://github.com/user-attachments/assets/3009759a-e57a-4b1f-bdd3-5f1014686541" />
+
 
   ```bash
   hakunet clear
   ```
 to close them :(
+or use HakuMenu to close it :D
 
 
 - SUPER + Y to change wallpaper
@@ -120,7 +124,9 @@ to close them :(
 - Ensure all scripts in `~/.local/bin` have execution permissions
 
 - In Haku Menu choose Cava Underbar for this :) (cava under waybar ofc)
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/8c8deab2-51ba-4233-b04d-69bf745972a2" />
+- Cava under waybar will automatically close when focus fullscreen (maximize)
+<img width="456" height="140" alt="20260511_113043" src="https://github.com/user-attachments/assets/6890a3f8-0929-4c24-a057-f97dc2377896" />
+
 
 
 ### In Haku Menu
@@ -135,12 +141,12 @@ If configurations don't work:
 4. Review individual config files for syntax errors
 5. If module clock on waybar doesn't work. Make sure you have set Timezone, Locale for Arch linux
 6. Lively Wallpaper by SUPER SHIFT + Y didnt show or didnt have thumbnail?
-   >> Create folder Preview (~/Videos/Wallpapers/Preview) and add image .jpg/.png (same name with video) to appear thumbnail in rofi
+   > Create folder Preview (~/Videos/Wallpapers/Preview) and add image .jpg/.png (same name with video) to appear thumbnail in rofi select menu
 
 # 📦 Contributing
 
-This is a personal dotfile configuration. Feel free to fork and adapt it to your needs!
-tiktok: @hakuimaku2372
+- This is a personal dotfile configuration. Feel free to fork and adapt it to your needs!
+- tiktok: @hakuimaku2372
 
 ---
 
