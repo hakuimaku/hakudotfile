@@ -21,7 +21,7 @@ Use ly for login
 - Basic knowledge of shell configuration and file permissions
 
 ## **Strongly Recommendation:** Manually copy configurations rather than using the automated installer. Review `pkg.txt` to select which packages to install.
-## If it is your first time install arch, just use install.sh script to quick setup
+## If it is your first time installing arch, just use install.sh script to quick setup
 
 ## 🚀 Installation
 
@@ -91,12 +91,6 @@ to open haku space in workspace 1 :)
 <img width="1920" height="1080" alt="20260511_113021" src="https://github.com/user-attachments/assets/fb412e1d-44f3-4af0-8139-c0f6638bcb2a" />
 
 
-  ```bash
-  haku clear
-  ```
-to close them :(
-
-
 - in terminal type:
   ```bash
   hakunet
@@ -106,10 +100,10 @@ to open haku space - hakunet in workspace 1 :)
 
 
   ```bash
-  hakunet clear
+  haku clear
   ```
-to close them :(
-or use HakuMenu to close it :D
+to close them or
+or use HakuMenu to close them :D
 
 
 - SUPER + Y to change wallpaper
