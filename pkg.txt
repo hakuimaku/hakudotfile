@@ -65,3 +65,4 @@ chafa
 imagemagick
 grim
 cmatrix
+lavat-git

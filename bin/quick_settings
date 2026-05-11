@@ -14,6 +14,7 @@ options="󰍜 App Menu
 $DIV
 󰸉 Kill Video Wallpaper
  Cava Underbar
+󱗣 HakuSpace clear
 󰑋 Screen Record
 󰖩 Wifi
 󰂯 Bluetooth
@@ -44,6 +45,7 @@ case $chosen in
     *"Quit"*) ~/.local/bin/shutdown ;;
     *"Kill Video Wallpaper"*) pkill mpvpaper ;;
     *"Cava Underbar"*) ~/.local/bin/cava_manager --toggle ;;
+    *"HakuSpace clear"*) ~/.local/bin/haku clear ;;
     *"Screen Record"*) ~/.local/bin/record & ;;
     $DIV) notify-send "This is not a valid option sir" ;;
     *"Wifi"*) nm-connection-editor & ;;

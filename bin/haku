@@ -6,22 +6,22 @@ RES=$(hyprctl monitors -j | jq -r '.[] | select(.name=="eDP-1") | .width')
 
 if [ "$RES" -le 1280 ]; then
     # Cấu hình cho 720p
-    FONT_CLOCK=7
-    FONT_GENERAL=7
-    FONT_TERMINAL=10
+    FONT_CLOCK=8
+    FONT_GENERAL=8
+    FONT_TERMINAL=11
     RULES_SIZE=(
         "size 257 285, match:title seyclock"
         "size 517 360, match:title seypipes"
         "size 250 285, match:title seymatrix"
         "size 733 420, match:title seycmd"
-        "size 733 230, match:title seycava"
+        "size 733 230, match:title seylavat"
     )
     RULES_MOVE=(
         "move 10 50, match:title seyclock"
         "move 10 345, match:title seypipes"
         "move 277 50, match:title seymatrix"
         "move 537 50, match:title seycmd"
-        "move 537 480, match:title seycava"
+        "move 537 480, match:title seylavat"
     )
 else
     # Cấu hình mặc định cho 1080p 
@@ -33,14 +33,14 @@ else
         "size 775 545, match:title seypipes"
         "size 375 450, match:title seymatrix"
         "size 1100 690, match:title seycmd"
-        "size 1100 305, match:title seycava"
+        "size 1100 305, match:title seylavat"
     )
     RULES_MOVE=(
         "move 15 55, match:title seyclock"
         "move 15 520, match:title seypipes"
         "move 415 55, match:title seymatrix"
         "move 805 55, match:title seycmd"
-        "move 805 760, match:title seycava"
+        "move 805 760, match:title seylavat"
     )
 fi
 
@@ -86,7 +86,7 @@ hyprctl dispatch exec "kitty --title 'seycmd' --class 'seycmd' -o font_size=$FON
 sleep 0.1
 hyprctl dispatch exec "kitty --title 'seypipes' --class 'seypipes' -o font_size=$FONT_GENERAL sh -c 'pipes.sh -t 1 -c 7'"
 sleep 0.1
-hyprctl dispatch exec "kitty --title 'seycava' --class 'seycava' sh -c 'cava'"
+hyprctl dispatch exec "kitty --title 'seylavat' --class 'seylavat' -o font_size=$FONT_GENERAL sh -c 'lavat -r1'"
 sleep 0.1
 
 hyprctl keyword input:follow_mouse 1
