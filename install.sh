@@ -290,9 +290,9 @@ for service in "${SERVICES[@]}"; do
     fi
 done
 
-# Enable ly and disable getty on ttyX
-sudo systemctl enable --now ly@ttyX.service
-sudo systemctl disable --now getty@ttyX.service
+# Enable ly and disable getty on tty1
+sudo systemctl enable --now ly@tty1.service
+sudo systemctl disable --now getty@tty1.service
 echo ":: Enabling ly..."
 
 echo "--- Configuring Nemo as default file manager ---"
