@@ -19,7 +19,7 @@ Include: Waybar, Rofi, Kitty, Zsh, Zen Browser, Networkmanager, Nemo, Powerprofi
 Use ly for login
 
 > **⚠️ Important Notice:** This dotfile is in active development and currently supports **Hyprland 0.54.3 (0.54.x)**. Configuration may break with future Hyprland updates due to changes in windowrules and other settings.
-> Recommend Monitor eDP-1, 1920p and 720p (because in hyprland.conf, Haku Space I use). You can change it manually.
+> Recommend Monitor eDP-1, 1080p and 720p (because in hyprland.conf, Haku Space I use). You can change it manually.
 
 ## 📋 Prerequisites
 
