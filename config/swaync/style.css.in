@@ -1,6 +1,6 @@
 * {
-    font-family: "JetBrainsMono Nerd Font", monospace;
-    font-size: 16px;
+    font-family: "${FONT_FAMILY}", monospace;
+    font-size: ${FONT_SIZE}px;
     font-weight: bold;
 }
 

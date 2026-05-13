@@ -2,7 +2,7 @@
 /* GLOBAL STYLES                                  */
 /* ============================================================================== */
 * {
-    font-family: "JetBrainsMono Nerd Font", "Material Icons";
+    font-family: ${FONT_FAMILY};
     font-size: 18px;
     font-weight: bold;
     border-radius: 12px;
