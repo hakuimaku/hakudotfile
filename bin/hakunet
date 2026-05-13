@@ -24,7 +24,7 @@ if [ "$RES" -le 1280 ]; then
     )
 else
     # 1080p
-    FONT_CLOCK=10
+    FONT_CLOCK=9
     FONT_GENERAL=12
     FONT_TERMINAL=15
     RULES_SIZE=(
