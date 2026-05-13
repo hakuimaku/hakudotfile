@@ -1,18 +1,14 @@
 #!/bin/bash
 
-# File cờ để đánh dấu trạng thái (tồn tại = đang bật tiết kiệm pin)
+# Disable animations, blur, drop shadow, and rounding for better performance
+
 LOCK_FILE="/tmp/hypr_power_save_mode"
 
-# Hàm thông báo
 notify() {
     notify-send -u low -t 2000 "Power Saver" "$1"
 }
 
 if [ -f "$LOCK_FILE" ]; then
-    # =================================================================
-    # TRƯỜNG HỢP: ĐANG BẬT -> TẮT (VỀ CHẾ ĐỘ HIỆU NĂNG CAO)
-    # =================================================================
-    
     hyprctl keyword animations:enabled 1
     hyprctl keyword decoration:blur:enabled 1
     hyprctl keyword decoration:drop_shadow 1
@@ -34,9 +30,6 @@ if [ -f "$LOCK_FILE" ]; then
     notify "MODE: PERFORMANCE (Normal)"
 
 else
-    # =================================================================
-    # TRƯỜNG HỢP: ĐANG TẮT -> BẬT (CHẾ ĐỘ TIẾT KIỆM PIN TỐI ĐA)
-    # =================================================================
     hyprctl keyword animations:enabled 0
     hyprctl keyword decoration:blur:enabled 0
     hyprctl keyword decoration:drop_shadow 0
@@ -52,8 +45,7 @@ else
     pkill -f tty-clock
     pkill -f cmatrix
     pkill -f pipes.sh
-    /home/hakuimaku/.local/bin/haku clear
-    /home/hakuimaku/.local/bin/cava_toggle.sh clear
+    pkill -f lavat
 
     pkexec systemctl stop docker
 
