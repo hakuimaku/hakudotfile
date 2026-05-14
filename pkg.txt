@@ -69,3 +69,4 @@ imagemagick
 grim
 cmatrix
 lavat-git
+downgrade
