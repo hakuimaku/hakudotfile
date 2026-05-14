@@ -298,6 +298,14 @@ for service in "${SERVICES[@]}"; do
     fi
 done
 
+read -p "===> Do you want to enable ly service now? (y/n): " confirm
+if [[ $confirm == [yY] ]]; then
+    systemctl enable ly@tty1.service
+    systemctl disable getty@tty1.service
+else
+    echo "Skipping ly service enable."
+fi
+
 echo "--- Configuring Nemo as default file manager ---"
 xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
 
