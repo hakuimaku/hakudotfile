@@ -4,7 +4,7 @@
 
 # OVERVEW
 | Screenshot Capture | Description |
-|---|---|
+|---|-----|
 | <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4640efd9-ec98-46bf-a5d1-19381020a1f3" /> | Overview |
 | <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/54aa6a29-f6db-4efe-b52e-d75bca75ebef" /> | Haku Menu |
 | <img width="1920" height="1080" alt="20260511_113021" src="https://github.com/user-attachments/assets/fb412e1d-44f3-4af0-8139-c0f6638bcb2a" /> | `haku` - Haku Space |
@@ -13,7 +13,7 @@
 ---
 ## WELCOME TO HAKU SPACE! A minimal and clean dotfile configuration for Arch Linux with Hyprland
 
-Include: Waybar, Rofi, Kitty, Zsh, Zen Browser, Networkmanager, Nemo, Powerprofilesctl, ...
+Include: Waybar, Rofi, Kitty, Zsh, Zen Browser, Networkmanager, Nemo, power-profile-daemon, ...
 Use ly for login
 
 > **⚠️ Important Notice:** This dotfile is in active development and currently supports **Hyprland 0.54.3 (0.54.x)**. Configuration may break with future Hyprland updates due to changes in windowrules and other settings.
@@ -57,9 +57,6 @@ reboot
 
 ---
 
-### In Haku Menu
-Some module I didn't remove because I'm too lazy:( so pls you manually read in ~/.local/bin/quick_settings or choose Setting in Haku Menu to remove them
-
 ## 🐛 Troubleshooting
 
 If configurations don't work:
@@ -68,7 +65,7 @@ If configurations don't work:
 3. Check config file paths are correctly set
 4. Review individual config files for syntax errors
 5. If module clock on waybar doesn't work. Make sure you have set Timezone, Locale for Arch linux
-6. Lively Wallpaper by SUPER SHIFT + Y didnt show or didnt have thumbnail?
+6. Lively Wallpaper by SUPER SHIFT + Y didn't have thumbnail?
    > Create folder Preview (~/Videos/Wallpapers/Preview) and add image .jpg/.png (same name with video) to appear thumbnail in rofi select menu
 
 # 📦 Contributing
