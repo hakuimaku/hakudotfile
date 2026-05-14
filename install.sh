@@ -1,9 +1,13 @@
 #!/bin/bash
 
+
+# At block 4 and 5, copy config and bin files will backup current config and bin if they exist.
+# The backup will be created in the same location with a timestamp suffix (e.g., .config_backup_20240601_123456).
+# This way, you can easily restore your previous configuration if needed.
 echo ""
 echo "================================================================================================"
-echo "WELCOME TO HAKUOS CONFIG INSTALLER"
-echo "This script will help you set up your HakuOS configuration"
+echo "--- WELCOME TO HAKUSPACE CONFIG INSTALLER ---"
+echo "This script will help you set up your HakuSpace configuration"
 echo "It will install necessary packages, copying config files and setting up Oh My Zsh with plugins."
 echo "Please follow the prompts to complete the installation process."
 echo "================================================================================================"
@@ -23,7 +27,7 @@ else
     echo "You need to install yay to proceed with package installation."
 fi
 
-DEPENDENCIES=("git" "curl")
+DEPENDENCIES=("yay" "git" "curl")
 PKG_FILE="$HOME/hakudotfile/pkg.txt"
 
 echo ""
@@ -88,6 +92,10 @@ FOLDERS=(
     "$HOME/.themes"
     "$HOME/Pictures"
     "$HOME/Pictures/Wallpapers"
+    "$HOME/Pictures/Screenshots"
+    "$HOME/Videos"
+    "$HOME/Videos/Wallpapers"
+    "$HOME/Videos/Wallpapers/Preview"
 )
 
 for folder in "${FOLDERS[@]}"; do
@@ -201,7 +209,7 @@ SOURCE_WALLPAPER="$HOME/hakudotfile/Wallpapers"
 
 
 echo ""
-echo "--- 7. Ready to deploy other files to home directory ---"
+echo "--- 7. Ready to deploy other files (like .nanorc and .zshrc) to home directory ---"
 
 read -p "===> Do you want to backup and copy your other files now? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
