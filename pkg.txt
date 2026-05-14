@@ -12,6 +12,8 @@ fastfetch
 nwg-look
 brightnessctl
 pavucontrol
+gparted
+wl-screenrec-git
 wl-clipboard
 cliphist
 hyprlock
