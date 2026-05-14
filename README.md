@@ -50,7 +50,15 @@ cd hakudotfile
 ./install.sh
 ```
 
-### Step 4: Reboot
+### Step 4: Downgrade hyprland
+- Because this dotfile was made from hyprland 0.54.3, so we need to downgrade version of hyprland manually
+- Type in terminal:
+``` bash
+sudo downgrade hyprland
+```
+- Select 0.54.3 version and enter, add hyprland into ignorepkg too
+
+### Step 5: Reboot
 ```bash
 reboot
 ```
