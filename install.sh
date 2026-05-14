@@ -18,7 +18,7 @@ echo ""
 # Install yay if not found
 read -p "===> Do you want to install yay now)? (y/n): " confirm
 if [[ $confirm == [yY] ]]; then
-    git clone https://aur.archlinux.org/yay.git /tmp/yay
+    git clone https://aur.archlinux.org/yay-bin.git /tmp/yay
     (cd /tmp/yay && makepkg -si --noconfirm)
     cd "$HOME"
     rm -rf /tmp/yay
@@ -299,9 +299,15 @@ for service in "${SERVICES[@]}"; do
 done
 
 # Enable ly and disable getty on tty1
-sudo systemctl enable --now ly@tty1.service
-sudo systemctl disable --now getty@tty1.service
-echo ":: Enabling ly..."
+read -p "===> Do you want to enable ly now? (y/n): " confirm
+if [[ $confirm == [yY] ]]; then
+    sudo systemctl enable --now ly@tty1.service
+    sudo systemctl disable --now getty@tty1.service
+    echo ":: Enabling ly..."
+else
+    echo "Skipping enable ly services."
+fi
+
 
 echo "--- Configuring Nemo as default file manager ---"
 xdg-mime default nemo.desktop inode/directory application/x-gnome-saved-search
