@@ -3,14 +3,12 @@
 📖 See Wiki: https://github.com/hakuimaku/hakudotfile/wiki
 
 # OVERVEW
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4640efd9-ec98-46bf-a5d1-19381020a1f3" />
-overview ^
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/54aa6a29-f6db-4efe-b52e-d75bca75ebef" />
-Haku Menu ^
-<img width="1920" height="1080" alt="20260511_113021" src="https://github.com/user-attachments/assets/fb412e1d-44f3-4af0-8139-c0f6638bcb2a" />
-haku - Haku Space ^
-<img width="1920" height="1080" alt="20260511_113038" src="https://github.com/user-attachments/assets/3009759a-e57a-4b1f-bdd3-5f1014686541" />
-hakunet - Haku Space ^
+| Screenshot Capture | Description |
+|---|---|
+| <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/4640efd9-ec98-46bf-a5d1-19381020a1f3" /> | Overview |
+| <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/54aa6a29-f6db-4efe-b52e-d75bca75ebef" /> | Haku Menu |
+| <img width="1920" height="1080" alt="20260511_113021" src="https://github.com/user-attachments/assets/fb412e1d-44f3-4af0-8139-c0f6638bcb2a" /> | `haku` - Haku Space |
+| <img width="1920" height="1080" alt="20260511_113038" src="https://github.com/user-attachments/assets/3009759a-e57a-4b1f-bdd3-5f1014686541" /> | `hakunet` - Haku Space
 
 ---
 ## WELCOME TO HAKU SPACE! A minimal and clean dotfile configuration for Arch Linux with Hyprland
@@ -19,7 +17,7 @@ Include: Waybar, Rofi, Kitty, Zsh, Zen Browser, Networkmanager, Nemo, Powerprofi
 Use ly for login
 
 > **⚠️ Important Notice:** This dotfile is in active development and currently supports **Hyprland 0.54.3 (0.54.x)**. Configuration may break with future Hyprland updates due to changes in windowrules and other settings.
-> Recommend Monitor eDP-1, 1080p and 720p (because in hyprland.conf, Haku Space I use). You can change it manually.
+> Recommend Monitor eDP-1, 1080p and 720p (because in hyprland.conf, Haku Space I use). You can change it manually at monitor in ~/.config/hypr/hyprland.conf.
 
 ## 📋 Prerequisites
 
