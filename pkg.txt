@@ -1,4 +1,5 @@
-hyprland 0.54.3-4
+hyprland
+nano
 waybar
 rofi
 swaync
