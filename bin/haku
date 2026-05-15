@@ -5,7 +5,7 @@ RES=$(hyprctl monitors -j | jq -r '.[] | select(.name=="eDP-1") | .width')
 
 
 if [ "$RES" -le 1280 ]; then
-    # Cấu hình cho 720p
+    # 720p
     FONT_CLOCK=8
     FONT_GENERAL=8
     FONT_TERMINAL=11
@@ -24,7 +24,7 @@ if [ "$RES" -le 1280 ]; then
         "move 537 480, match:title seylavat"
     )
 else
-    # Cấu hình mặc định cho 1080p 
+    # 1080p 
     FONT_CLOCK=10
     FONT_GENERAL=12
     FONT_TERMINAL=15
