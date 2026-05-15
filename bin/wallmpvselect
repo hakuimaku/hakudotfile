@@ -47,5 +47,5 @@ CHOICE=$(list_walls | rofi -dmenu -i -p "Wallpaper" -show-icons \
 
 if [ -n "$CHOICE" ]; then
     pkill mpvpaper
-    mpvpaper -vs -o "no-audio loop" eDP-1 "$WALL_DIR/$CHOICE"
+    mpvpaper -v -s -o "no-audio loop" eDP-1 "$WALL_DIR/$CHOICE"
 fi
