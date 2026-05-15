@@ -1,8 +1,6 @@
-# --- Cấu hình màu giao diện ---
+set titlecolor bold,red,black
 
-set titlecolor bold,yellow,black
+set statuscolor bold,white,black
 
-set statuscolor bold,yellow,black
-
-set keycolor yellow
+set keycolor red
 set functioncolor white
