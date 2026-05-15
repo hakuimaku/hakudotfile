@@ -9,7 +9,7 @@ export MOZ_ENABLE_WAYLAND=1
 export QT_QPA_PLATFORMTHEME=qt6ct
 export XDG_CURRENT_DESKTOP=GNOME
 
-# Ghi đè màu cho theme agnoster
+# Override color for theme agnoster (oh-my-zsh)
 export AGNOSTER_DIR_BG="white"
 export AGNOSTER_GIT_DIRTY_BG="black"
 export AGNOSTER_GIT_DIRTY_FG="white"
@@ -117,12 +117,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
-alias rswaybar='~/.local/bin/restart_waybar'
-alias battery='upower -i /org/freedesktop/UPower/devices/battery_BAT1'
-alias health='sudo smartctl -a /dev/nvme0n1'
-alias sqlserver='~/.local/bin/open_sql_server'
+export PATH="$HOME/.local/bin:$PATH"
 
 export DOTNET_ROOT=$HOME/.dotnet
 export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
-export PATH="$HOME/.local/bin:$PATH"
