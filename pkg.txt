@@ -7,6 +7,7 @@ kitty
 awww
 ly
 uwsm
+socat
 btop
 fastfetch
 nwg-look
