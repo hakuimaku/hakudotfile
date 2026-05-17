@@ -1,3 +1,5 @@
+# ⚠️ This is now OUTDATED version, please go to https://github.com/hakuimaku/hakuspace
+
 # 🎨 Haku Dotfiles
 
 📖 See Wiki: https://github.com/hakuimaku/hakudotfile/wiki
